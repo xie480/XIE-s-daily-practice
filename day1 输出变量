@@ -3,6 +3,6 @@ int main()
 {
 	int x, y;
 	std::cin >> x >> y;
-	std::cout << y << std::endl << x;
+	std::cout << x << std::endl << y;
 	return 0;
 }
