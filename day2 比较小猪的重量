@@ -1,0 +1,32 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    float a = 0;
+    float b = 0;
+    float c = 0;
+
+    cout << "请输入第一只小猪的重量(kg): ";
+    cin >> a;
+    cout << "请输入第二只小猪的重量(kg): ";
+    cin >> b;
+    cout << "请输入第三只小猪的重量(kg): ";
+    cin >> c;
+
+    if (a > b && a > c) {
+        cout << "第一只小猪最重" << endl;
+    }
+    else if (b > a && b > c) {
+        cout << "第二只小猪最重" << endl;
+    }
+    else if (c > a && c > b) {
+        cout << "第三只小猪最重" << endl;
+    }
+    else {
+        cout << "有两只或三只小猪的重量相同且是最大值" << endl;
+    }
+
+    return 0;
+}
