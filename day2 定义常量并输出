@@ -1,0 +1,11 @@
+#include <iostream>
+
+using namespace std;
+
+#define name "原神"
+
+int main() 
+{
+	cout << name << "启动！" << endl;
+	return 0;
+ }
