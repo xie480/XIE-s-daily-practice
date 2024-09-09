@@ -1,0 +1,29 @@
+#include <iostream>
+
+using namespace std;
+
+int main() 
+{
+	char ch = 0;
+	cout << "中国于哪一年建国？\n" << endl;
+	cout << "A.1965" << "  " << "B.1949" << "  " << "C.1956" << "  " << "D.1954" << endl;
+	cin >> ch;
+	switch (ch) {
+	case 'A':
+		cout << "回答错误！" << endl;
+		break;
+	case 'B':
+		cout << "回答正确！" << endl;
+		break;
+	case 'C':
+		cout << "回答错误！" << endl;
+		break;
+	case 'D':
+		cout << "回答错误！" << endl;
+		break;
+	default:
+		cout << "无效答案！" << endl;
+		break;
+	}
+
+	return 0;
