@@ -1,0 +1,21 @@
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+
+using namespace std;
+
+int main()
+{
+	srand(static_cast<unsigned>(time(0)));
+	int a = rand() % 10 + 1;
+	int b = 0;
+	cout << "已生成随机数字！请开始猜测：" << endl;
+	cin >> b;
+	while (b != a) {
+		cout << "很遗憾，你猜错了！请再试一次！" << endl;
+		cin >> b;
+
+	}
+	cout << "恭喜你答对了！" << endl;
+	return 0;
+}
