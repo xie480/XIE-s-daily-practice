@@ -17,3 +17,4 @@ int main()
 		n++;
 	} while (n < 1000);
 	return 0;
+\\这道题卡了我好久TAT
