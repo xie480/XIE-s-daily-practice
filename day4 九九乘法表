@@ -1,0 +1,15 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+	for (int n = 1; n <= 9; n++) {
+		for (int m = 1; m <= n; m++) {
+			int d = n * m;
+			cout << n << "×" << m << "=" << d << "\t";
+		}
+		cout << endl;
+	}
+	return 0;
+}
