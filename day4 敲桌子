@@ -16,3 +16,19 @@ int main()
 	} while (num < 101);
 	return 0;
 }
+
+//下面是for语句的版本
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+	for (int num = 0; num <= 100; num++) {
+		cout << num << endl;
+		if (num % 10 == 7 || num % 7 == 0 || num / 10 == 7) {
+			cout << "敲桌子" << endl;
+		}
+	}
+	return 0;
+}
