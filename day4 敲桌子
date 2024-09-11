@@ -1,0 +1,18 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+	int num = 1;
+	do {
+		if (num % 7 == 0 || num % 10 == 7 || num / 10 == 7) {
+			cout << "敲桌子" << endl;
+		}
+		else {
+			cout << num << endl;
+		}
+		num++;
+	} while (num < 101);
+	return 0;
+}
