@@ -1,0 +1,21 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+	int num[5] = { 2,4,6,8,10 };
+	int x = 0;
+	int m = sizeof(num) / sizeof(num[0])-1;
+	while (x < m) {
+		int w = num[x];
+		num[x] = num[m];
+		num[m] = w;
+		x++;
+		m--;
+	}
+	for (int a = 0; a < sizeof(num) / sizeof(num[0]); a++) {
+		cout << num[a] << endl;
+	}
+	return 0;
+}
