@@ -1,0 +1,16 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+	int max = 0;
+	int num[5] = { 300,350,200,400,250 };
+	for (int x = 0; x < 5; x++) {
+		if (num[x] > max) {
+			max = num[x];
+		}
+	}
+	cout << max << endl;
+	return 0;
+}
