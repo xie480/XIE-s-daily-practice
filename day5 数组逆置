@@ -5,6 +5,10 @@ using namespace std;
 int main()
 {
 	int num[5] = { 2,4,6,8,10 };
+	cout << "原数组：";
+	for (int i = 0; i < 5; i++) {
+		cout << num[i] << "\t";
+	}
 	int x = 0;
 	int m = sizeof(num) / sizeof(num[0])-1;
 	while (x < m) {
@@ -14,8 +18,9 @@ int main()
 		x++;
 		m--;
 	}
+	cout << "\n逆置后：";
 	for (int a = 0; a < sizeof(num) / sizeof(num[0]); a++) {
-		cout << num[a] << endl;
+		cout << num[a] << "\t";
 	}
 	return 0;
 }
