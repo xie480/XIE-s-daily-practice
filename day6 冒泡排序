@@ -1,0 +1,24 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+	int a[5] = { 90,57,82,31,46};
+	for (int i = 0; i < 4; i++) {
+		//外部循环
+		for (int b = 0; b < 4; b++) {
+			//内部循环
+			if (a[b] > a[b + 1]) {
+				int c = a[b];
+				a[b] = a[b + 1];
+				a[b + 1] = c;
+			}
+		}
+	}
+	for (int d = 0; d < 5; d++) {
+		cout << a[d] << "\t";
+	}
+	cout << endl;
+	return 0;
+}
