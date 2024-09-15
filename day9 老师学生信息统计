@@ -1,0 +1,123 @@
+//版本1
+
+#include<iostream>
+#include<string>
+
+using namespace std;
+
+struct student
+{
+	string name;
+	int score;
+};
+
+struct teacher
+{
+	string name;
+	student arr[5];
+};
+
+int main()
+{
+	student arr1[5] =
+	{ {"li",100},
+		{"w",50},
+		{"2",90},
+		{"sl",99},
+		{"ll",56}
+	};
+
+	student arr2[5] =
+	{ {"lin",100},
+		{"wn",50},
+		{"2n",90},
+		{"sln",99},
+		{"lln",56}
+	};
+
+	student arr3[5] =
+	{ {"linx",100},
+		{"wnx",50},
+		{"2nx",90},
+		{"slnx",99},
+		{"llnx",56}
+	};
+
+	teacher brr[3] =
+	{
+		{"李三",{arr1[0],arr1[1],arr1[2],arr1[3],arr1[4]}},
+		{"李四",{arr2[0],arr2[1],arr2[2],arr2[3],arr2[4]}},
+		{"李五",{arr3[0],arr3[1],arr3[2],arr3[3],arr3[4]}},
+	};
+
+	for (int i = 0; i < 3; i++)
+	{
+		cout << "老师的名字是：" << brr[i].name << endl;
+		for (const auto& s : brr[i].arr)
+		{
+			cout << "学生的名字是：" << s.name << "  学生的成绩是：" << s.score << "\n";
+		}
+		cout << endl;
+	}
+
+  //版本2
+  #include<iostream>
+#include<string>
+#include<cstdlib>
+#include<ctime>
+
+using namespace std;
+
+struct student
+{
+	string name;
+	string score;
+};
+
+struct teacher
+{
+	string name;
+	struct student brr[5];
+};
+
+void allocatespace(struct teacher arr[], int len)
+{
+	srand(time(NULL));
+	string nameseed = "ABCDE";
+	for (int i = 0; i < len; i++)
+	{
+		arr[i].name = "teacher_";
+		arr[i].name += nameseed[i];
+		for (int j = 0; j < 5; j++)
+		{
+			arr[i].brr[j].name = "student_";
+			int names = rand() % 100;
+			arr[i].brr[j].name += to_string(names);
+			int score = rand() % 151;
+			arr[i].brr[j].score = to_string(score);
+		}
+	}
+}
+
+void printteacher(struct teacher arr[],int len)
+{
+	for (int i = 0; i < len;i++)
+	{
+		cout << "老师名字：" << arr[i].name << "\n";
+		for(int j = 0; j < 5;j++)
+		{
+			cout << "学生名字：" << arr[i].brr[j].name << "  学生成绩：" << arr[i].brr[j].score << endl;
+		}
+		cout << endl;
+	}
+};
+
+int main()
+{
+	struct teacher arr[3];
+	int len = sizeof(arr) / sizeof(arr[0]);
+	allocatespace(arr, 3);
+	printteacher(arr, 3);
+	return 0;
+}
+
