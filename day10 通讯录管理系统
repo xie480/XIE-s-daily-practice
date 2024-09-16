@@ -1,0 +1,340 @@
+#include<iostream>
+#include<string>
+#define max 100
+
+using namespace std;
+
+void menu()
+{
+	cout << "****  欢迎使用!!  ****\n" << endl;
+	cout << "__________________________" << endl;
+	cout << "__________________________" << endl;
+	cout << "_____  1.添加联系人  _____" << endl;
+	cout << "_____  2.显示联系人  _____" << endl;
+	cout << "_____  3.删除联系人  _____" << endl;
+	cout << "_____  4.查找联系人  _____" << endl;
+	cout << "_____  5.修改联系人  _____" << endl;
+	cout << "_____  6.清空联系人  _____" << endl;
+	cout << "_____  0.退出通讯录  _____" << endl;
+	cout << "__________________________" << endl;
+	cout << "__________________________" << endl;
+}
+
+struct lianxiren
+{
+	string name;
+	string sex;
+	int age;
+	long long photonumber;
+	string address;
+};
+
+
+struct xitong
+{
+	lianxiren arr[max];
+	int renshu;
+};
+
+void tianjia(xitong *p)
+{
+	if (p->renshu == max)
+	{
+		cout << "\n***  通讯录人数已满，无法进行添加！  ***" << endl;
+		return;
+	}
+	else
+	{
+		string name1;
+		cout << "联系人的姓名：" << endl;
+		cin >> name1;
+		p->arr[p->renshu].name = name1;
+
+		string sex1;
+		cout << "联系人的性别：" << endl;
+		cin >> sex1;
+		p->arr[p->renshu].sex = sex1;
+		if (sex1 != "男" && sex1 != "女")
+		{
+			cout << "\n***  无效回答！！  ***" << endl;
+			system("pause");
+			system("cls");
+			return;
+		}
+
+		int age1;
+		cout << "联系人的年龄：" << endl;
+		cin >> age1;
+		p->arr[p->renshu].age = age1;
+
+		long long photonumber1;
+		cout << "联系电话：" << endl;
+		cin >> photonumber1;
+		p->arr[p->renshu].photonumber = photonumber1;
+
+		string xuanze;
+		cout << "是否要填写该联系人的住址？" << "\n是/否" << endl;
+		cin >> xuanze;
+		while (true)
+		{
+			if (xuanze == "是")
+			{
+				string address1;
+				cout << "联系人的住址：" << endl;
+				cin >> address1;
+				p->arr[p->renshu].address = address1;
+				cout << "***  添加完成  ***" << endl;
+				break;
+			}
+			else
+			{
+				cout << "\n***  添加完成  ***" << endl;
+				break;
+			}
+			cout << "***  无效操作！请重新输入！  ***" << endl;
+		}
+		p->renshu++;
+	}
+	system("pause");
+	system("cls");
+}
+
+void xianshi(xitong* p)
+{
+	if (p->renshu == 0)
+	{
+		cout << "***  目前通讯录尚未添加任何人  ***" << endl;
+		cout << "***  是否需要返回添加？ ***" << endl;
+		string q;
+		cout << "是/否" << endl;
+		cin >> q;
+		if (q == "是")
+		{
+			tianjia(p);
+		}
+		else
+		{
+			cout << "***  已自动退出通讯录！！  ***" << endl;
+			return;
+		}
+	}
+	else
+	{
+		for (int i = 0; i < p->renshu; i++)
+		{
+			cout << "\t姓名：" << p->arr[i].name << "\t性别：" << p->arr[i].sex << "\t年龄：" << p->arr[i].age << "\t手机号码：" << p->arr[i].photonumber << "\t住址：" << p->arr[i].address << endl;
+		}
+	}
+	system("pause");
+	system("cls");
+}
+
+int shanchu(xitong* p,string name)
+{
+	if (p->renshu == 0)
+	{
+		cout << "\n***  目前通讯录未添加任何人！  ***" << endl;
+	}
+	else
+	{
+		for (int i = 0; i < p->renshu; i++)
+		{
+			if (p->arr[i].name == name)
+			{
+				cout << "***  已找到此人  ***" << endl;
+				system("pause");
+				cout << "***  确定要将其删除吗？  ***" << endl;
+				cout << "A.确定/B.再思考一下下" << endl;
+				char l = 0;
+				cin >> l;
+				if (l == 'A')
+				{
+					return 1;
+				}
+				else
+				{
+					return 2;
+				}
+			}
+			else
+			{
+				cout << "***  查无此人！！  ***" << endl;
+			}
+		}
+		return 2;
+	}
+	system("pause");
+	system("cls");
+}
+
+void shanchu(xitong* p)
+{
+	cout << "请输入需要删除的联系人的姓名：" << endl;
+	string name;
+	cin >> name;
+	int jieguo = shanchu(p, name);
+	if (jieguo == 1)
+	{
+		for (int i = 0; i < p->renshu - 1; i++)
+		{
+			p->arr[i] = p->arr[i + 1];
+		}
+		p->renshu--;
+		cout << "***  删除成功！！  ***" << endl;
+	}
+	system("pause");
+	system("cls");
+}
+
+void shousuo(xitong* p)
+{
+	cout << "请输入查找的联系人姓名：" << endl;
+	string name3;
+	cin >> name3;
+	bool found = false;
+	for (int i = 0; i < p->renshu; i++)
+	{
+		if (name3 == p->arr[i].name)
+		{
+			cout << "\n姓名：" << p->arr[i].name << "\t性别：" << p->arr[i].sex << "\t年龄：" << p->arr[i].age << "\t手机号码：" << p->arr[i].photonumber << "\t住址：" << p->arr[i].address << endl;
+			cout << "\n***  查找成功！！  ***" << endl;
+			found = true;
+			break;
+		}
+	}
+	if (! found)
+	{
+		cout << "***  查无此人！！  ***" << endl;
+	}
+	system("pause");
+	system("cls");
+}
+
+void xiugai(xitong* p)
+{
+	string name4;
+	cout << "请输入要修改信息的联系人姓名：" << endl;
+	cin >> name4;
+	bool found = false;
+	for (int i = 0; i < p->renshu; i++)
+	{
+		if (name4 == p->arr[i].name)
+		{
+			cout << "\n姓名：" << p->arr[i].name << "\t性别：" << p->arr[i].sex << "\t年龄：" << p->arr[i].age << "\t手机号码：" << p->arr[i].photonumber << "\t住址：" << p->arr[i].address << endl;
+			cout << "请选择你要修改的信息：" << endl;
+			cout << "1.姓名" << endl;
+			cout << "2.性别" << endl;
+			cout << "3.年龄" << endl;
+			cout << "4.手机号码" << endl;
+			cout << "5.住址" << endl;
+			int xx = 0;
+			string name0;
+			string sex0;
+			int age0;
+			long long photonumber0;
+			string address0;
+			found = true;
+			cin >> xx;
+			switch (xx)
+			{
+			case 1:
+				cout << "请输入修改内容" << endl;
+				cin >> name0;
+				p->arr[i].name = name0;
+				cout << "***  修改成功！！  ***" << endl;
+				break;
+			case 2:
+				cout << "请输入修改内容" << endl;
+				cin >> sex0;
+				p->arr[i].sex = sex0;
+				break;
+			case 3:
+				cout << "请输入修改内容" << endl;
+				cin >> age0;
+				p->arr[i].age = age0;
+				break;
+			case 4:
+				cout << "请输入修改内容" << endl;
+				cin >> photonumber0;
+				p->arr[i].photonumber = photonumber0;
+				break;
+			case 5:
+				cout << "请输入修改内容" << endl;
+				cin >> address0;
+				p->arr[i].address = address0;
+				break;
+			default:
+				cout << "***  无效操作！！  ***" << endl;
+				break;
+			}
+		}
+	}
+	if (!found)
+	{
+		cout << "***  查无此人！！  ***" << endl;
+	}
+	system("pause");
+	system("cls");
+}
+
+void qingkong(xitong* p)
+{
+	cout << "***  请再次确认是否需要清空通讯录！！  ***" << endl;
+	cout << "是/否" << endl;
+	string oo;
+	cin >> oo;
+	if (oo == "是")
+	{
+		p->renshu = 0;
+		cout << "***  已清空！！  ***" << endl;
+	}
+	else
+	{
+		cout << "***  已自动退出通讯录！！  ***" << endl;
+	}
+	system("pause");
+	system("cls");
+}
+
+int main()
+{
+	xitong m;
+	m.renshu = 0;
+	int cl = 0;
+
+	while (true)
+	{
+		menu();
+		cout << "\n" << "请输入命令以进行下一步操作：" << endl;
+		cin >> cl;
+		switch (cl)
+		{
+		case 1:
+			tianjia(&m);
+			break;
+		case 2:
+			xianshi(&m);
+			break;
+		case 3:
+			shanchu(&m);
+			break;
+		case 4:
+			shousuo(&m);
+			break;
+		case 5:
+			xiugai(&m);
+			break;
+		case 6:
+			qingkong(&m);
+			break;
+		case 0:
+			cout << "***  欢迎下次使用！!  ***" << endl;
+			system("pause");
+			return 0;
+			break;
+		default:
+			cout << "\n***  无效操作！！  ***" << endl;
+		}
+	}
+	return 0;
+}
